@@ -1,0 +1,207 @@
+:root {
+    --desert-gold: #e0a832;
+    --desert-orange: #c8642a;
+    --dark-bg: #1a1a2a;
+    --nos-cyan: #00f3ff;
+    --nos-blue: #0044ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: radial-gradient(circle at center, #3a2a10 0%, #221a08 50%, #0a0a0a 100%);
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+#game-container {
+    position: relative;
+    width: 400px;
+    height: 600px;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--dark-bg);
+    box-shadow: 0 0 60px rgba(200, 140, 40, 0.35), 0 0 120px rgba(180, 100, 20, 0.15);
+    border: 1px solid rgba(220, 160, 60, 0.2);
+}
+
+canvas { display: block; width: 100%; height: 100%; }
+
+#ui-layer {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Score */
+#score-display {
+    position: absolute;
+    top: 16px; left: 16px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--desert-gold);
+    text-shadow: 0 0 12px rgba(224, 168, 50, 0.8);
+    z-index: 10;
+}
+
+/* Speed Level */
+#speed-display {
+    position: absolute;
+    top: 16px; right: 16px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ff8844;
+    text-shadow: 0 0 10px rgba(255, 120, 60, 0.7);
+    z-index: 10;
+}
+
+/* NOS Countdown */
+#nos-next-container {
+    position: absolute;
+    bottom: 60px; left: 16px;
+    font-size: 0.75rem;
+    color: rgba(0, 200, 220, 0.6);
+    font-weight: 700;
+    z-index: 10;
+}
+
+/* NOS Active Bar */
+#nos-container {
+    position: absolute;
+    bottom: 16px; left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    z-index: 10;
+    transition: opacity 0.3s;
+}
+
+#nos-label {
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: var(--nos-cyan);
+    text-shadow: 0 0 15px var(--nos-cyan);
+    animation: nospulse 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes nospulse {
+    from { text-shadow: 0 0 8px var(--nos-cyan); }
+    to   { text-shadow: 0 0 25px var(--nos-cyan), 0 0 40px var(--nos-blue); }
+}
+
+#nos-bar {
+    width: 160px;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 6px;
+    border: 1px solid var(--nos-cyan);
+    overflow: hidden;
+    box-shadow: 0 0 8px rgba(0, 243, 255, 0.4);
+}
+
+#nos-bar-fill {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to right, var(--nos-blue), var(--nos-cyan));
+    border-radius: 6px;
+    transition: width 0.05s linear;
+    box-shadow: 0 0 10px var(--nos-cyan);
+}
+
+/* Panels */
+.glass-panel {
+    pointer-events: auto;
+    background: rgba(20, 20, 35, 0.65);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px 36px;
+    text-align: center;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+}
+
+.glass-panel h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 12px;
+    background: linear-gradient(to right, var(--desert-gold), var(--desert-orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.glass-panel h2 {
+    font-size: 2.5rem;
+    color: #ff3344;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(255, 50, 60, 0.7);
+}
+
+.glass-panel p {
+    color: #ccc;
+    margin-bottom: 14px;
+    font-size: 1rem;
+}
+
+.glass-panel .hint {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 24px;
+}
+
+.nos-highlight {
+    color: var(--nos-cyan);
+    font-weight: 900;
+    text-shadow: 0 0 8px var(--nos-cyan);
+}
+
+button {
+    background: linear-gradient(45deg, var(--desert-orange), var(--desert-gold));
+    border: none;
+    padding: 13px 34px;
+    border-radius: 30px;
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 0 18px rgba(200, 140, 40, 0.6);
+    transition: all 0.25s ease;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+button:hover { transform: scale(1.06); box-shadow: 0 0 28px rgba(224, 168, 50, 0.8); }
+button:active { transform: scale(0.96); }
+
+.hidden { display: none !important; }
+
+/* Scanline overlay */
+#game-container::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0,0,0,0.08),
+        rgba(0,0,0,0.08) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 5;
+}

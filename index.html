@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desert Rush Racing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+
+        <div id="ui-layer">
+            <!-- Score -->
+            <div id="score-display" class="hidden">⚡ Score: <span id="score">0</span></div>
+            <!-- Speed Level -->
+            <div id="speed-display" class="hidden">🏎️ Lvl <span id="speed-level">1</span></div>
+
+            <!-- NOS Countdown (next NOS spawn) -->
+            <div id="nos-next-container" class="hidden">
+                <span id="nos-next-label">NOS in <span id="nos-countdown">30</span>s</span>
+            </div>
+
+            <!-- NOS Active Bar -->
+            <div id="nos-container" class="hidden">
+                <span id="nos-label">⚡ NOS</span>
+                <div id="nos-bar"><div id="nos-bar-fill"></div></div>
+            </div>
+
+            <!-- Start Screen -->
+            <div id="start-screen" class="glass-panel">
+                <h1>Desert Rush</h1>
+                <p>Arrow Keys / WASD untuk mengemudi</p>
+                <p>Hindari truck &amp; pickup di jalan!</p>
+                <p class="hint">💊 Kumpulkan <span class="nos-highlight">NOS</span> untuk kecepatan tinggi!</p>
+                <button id="start-btn">Tancap Gas!</button>
+            </div>
+
+            <!-- Game Over Screen -->
+            <div id="game-over-screen" class="glass-panel hidden">
+                <h2>CRASH!</h2>
+                <p>Final Score: <span id="final-score">0</span></p>
+                <p class="hint">Level Kecepatan: <span id="final-level">1</span></p>
+                <button id="restart-btn">Balapan Lagi</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
